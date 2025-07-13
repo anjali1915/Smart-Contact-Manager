@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact Details</title>
+<link rel="stylesheet" href="/css/addContact.css">
+</head>
+<body>
+
+<div id="container">
+<h1>Enter the details </h1>
+<form th:action="@{${formObject.email} != null ? '/editprocess' : '/process'}"  method="post" th:object="${formObject}">
+<div id ="box">
+
+<div class="seperate">
+<label for="firstname">First name: </label>
+
+<input type="text" id="firstname" name="fname" th:field="*{fname}" placeholder="Enter your first name">
+
+
+</div>
+<p th:if="${#fields.hasErrors('fname')}" th:each="e : ${#fields.errors('fname')}" th:text="${e}" style=" margin-left:100px; color:red; font-size:10px;"></p>
+<div class="seperate">
+<label for="lastname">Last name: </label>
+<input type="text" id="lastname" name="lname" placeholder="Enter your last name">
+
+</div>
+<div class="seperate">
+<label for="addresses">Address: </label>
+<textarea  id="addresses" name="address" placeholder="Enter your native Address"></textarea>
+
+</div>
+<div class="seperate">
+<label for="emailid">Email: </label><br/>
+<input type="text" id="emailid" name="email" placeholder="Enter your mail id"><br/>
+</div>
+<p th:if="${#fields.hasErrors('email')}" th:each="e : ${#fields.errors('email')}" th:text="${e}" style=" margin-left:100px; color:red; font-size:10px;"></p>
+
+<div class="seperate">
+<label for="phone">Mobile: </label><br/>
+<input type="number" id="phone" name="mobile" placeholder="Enter your contact number"><br/>
+</div>
+<p th:if="${#fields.hasErrors('mobile')}" th:each="e : ${#fields.errors('mobile')}" th:text="${e}" style=" margin-left:100px; color:red; font-size:10px;"></p>
+<a href="/display"><input type="button" value="Show Details" ></a>
+
+<button type="submit" th:text="${formObject.email} != null ? 'Update' : 'Add'">Add</button>
+</div>
+</form>
+<p th:if="${success}" th:text="${success}" style="color:green; font-weight: bold; font-size: 14px;"></p>
+
+</div>
+
+</body>
+</html>
