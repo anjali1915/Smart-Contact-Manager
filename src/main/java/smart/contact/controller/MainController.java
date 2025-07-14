@@ -41,7 +41,7 @@ public class MainController {
 	    	System.out.println(result);
 	    	return "addContact";
 	    }
-	    boolean resultant =userdetailsService.adduser(userdetails);
+	    boolean resultant =userdetailsService.addUser(userdetails);
 	    if(resultant) {
 		    redirectAttributes.addFlashAttribute("success","Data submitted successfully.");
 
@@ -67,7 +67,7 @@ public class MainController {
 
 	    if (userExist.isPresent()) {
 	        // Preserve the same ID
-	        userdetails.setId(userExist.get().getId());
+	        
 	        userdetailsService.updateData(userdetails);
 	        redirectAttributes.addFlashAttribute("success", "User updated successfully.");
 	    } else {
@@ -85,9 +85,9 @@ public class MainController {
 		return "display";
 	}
 	
-	@GetMapping("/delete/{id}")
-	public String deleteData(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
-		this.userdetailsService.deleteuser(id);
+	@GetMapping("/delete/{email}")
+	public String deleteData(@PathVariable("email") String email, RedirectAttributes redirectAttributes) {
+		this.userdetailsService.deleteUser(email);
 		redirectAttributes.addFlashAttribute("success", "User deleted successfully");
 		return "redirect:/display";
 	}
