@@ -6,6 +6,6 @@ import java.util.Optional;
 
 import smart.contact.entities.Userdetails;
 
-public interface UserdetailsRepository extends CrudRepository<Userdetails,Integer>{
+public interface UserdetailsRepository extends CrudRepository<Userdetails,String>{
 	Optional<Userdetails> findByEmail(String Email);
 }
